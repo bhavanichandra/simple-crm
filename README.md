@@ -1,4 +1,4 @@
-# Database Duality REST API
+# Database Duality REST API - Simple CRM
 Django REST API project which enables dual databases (namely, PostgreSQL and MongoDB) with transaction support.
 
 ## Concept:
