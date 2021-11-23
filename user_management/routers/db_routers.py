@@ -2,7 +2,7 @@ class UserManagementRouter:
     """
     This router is to control the database operations that will be done when using migrate commands.
     """
-    route_app_labels = {'admin', 'auth', 'contenttypes', 'sessions', 'user_management'}
+    route_app_labels = {'admin', 'auth', 'contenttypes', 'sessions', 'core'}
 
     def db_for_read(self, model, **hints):
         """

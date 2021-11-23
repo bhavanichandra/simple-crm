@@ -28,7 +28,7 @@ I wanted to explore each of the above mentioned libraries and see which one is t
 
 A very basic database module / design for Smart CRM
 
-  ![readme-files](readme-files/SmartCRM_ER_Diagram.jpg "Database Diagram")
+  ![docs](docs/SmartCRM_ER_Diagram.jpg "Database Diagram")
 
 ## Intial Steps:
 To use or run the django app, please use GnuMake / Make tool to run the following commands:

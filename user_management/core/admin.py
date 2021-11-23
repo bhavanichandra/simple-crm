@@ -3,14 +3,10 @@ from uuid import uuid4
 from django.contrib import admin
 
 from .models import User, Role
-
+from .utils import generate_id
 
 # Register your models here.
 
-
-def generate_id():
-    uuid = uuid4().__str__().replace("-", "")
-    return uuid.strip()[0:15].upper()
 
 
 class UserInline(admin.StackedInline):
