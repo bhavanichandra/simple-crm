@@ -9,7 +9,7 @@ There are ways to connect to MongoDB through various libraries namely - *pymongo
 The most easy to use MongoDB library for Django is Djongo library, as it mirrors the Django ORM. The ORM is then converted to ODM and make database calls.
 
 ## Approach:
-I wanted to explore each of the above mentioned libraries and see which one is the most suitable for my needs. 
+I wanted to explore each of the above mentioned libraries and see which one is the most suitable for my needs and also to explore microservices architecture.
 
 - Please check the repo [pymongo-django-rest-api](https://github.com/muler-opensource/django-rest-api-pymongo-template) for the pymongo library. Please check both the branches. 
     - `main` branch contains basic pymongo usage
@@ -25,7 +25,10 @@ I wanted to explore each of the above mentioned libraries and see which one is t
 - User Management app is connected to PostgreSQL database, as it will be easy since Django has its own Admin Portal, which I'm going to leverage for it.
 
 ## Design:
- > TO BE ADDED
+
+A very basic database module / design for Smart CRM
+
+  ![docs](docs/SmartCRM_ER_Diagram.jpg "Database Diagram")
 
 ## Intial Steps:
 To use or run the django app, please use GnuMake / Make tool to run the following commands:
