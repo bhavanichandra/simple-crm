@@ -3,7 +3,7 @@ from uuid import uuid4
 from django.contrib import admin
 
 from .models import User, Role
-from .utils import generate_id
+from utility.core import generate_id
 
 # Register your models here.
 
