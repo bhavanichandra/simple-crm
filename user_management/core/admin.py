@@ -1,12 +1,10 @@
-from uuid import uuid4
-
 from django.contrib import admin
 
-from .models import User, Role
 from utility.core import generate_id
+from .models import User, Role
+
 
 # Register your models here.
-
 
 
 class UserInline(admin.StackedInline):
@@ -18,7 +16,7 @@ class UserInline(admin.StackedInline):
 class UserAdmin(admin.ModelAdmin):
     using = 'user_management'
     list_display = ('name', 'email', 'role')
-
+    readonly_fields = ('id', 'created_at', 'updated_at')
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
@@ -34,6 +32,7 @@ admin.site.register(User, UserAdmin)
 class RoleAdmin(admin.ModelAdmin):
     using = 'user_management'
     inlines = [UserInline]
+
     # prepopulated_fields = {'id': ('id',)}
 
     def get_form(self, request, obj=None, **kwargs):

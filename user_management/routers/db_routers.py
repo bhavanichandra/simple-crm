@@ -2,7 +2,7 @@ class UserManagementRouter:
     """
     This router is to control the database operations that will be done when using migrate commands.
     """
-    route_app_labels = {'admin', 'authentication', 'contenttypes', 'sessions', 'core'}
+    route_app_labels = {'admin', 'auth', 'contenttypes', 'sessions', 'core', 'user_auth'}
 
     def db_for_read(self, model, **hints):
         """
@@ -14,7 +14,7 @@ class UserManagementRouter:
 
     def db_for_write(self, model, **hints):
         """
-        Attempts to write authentication models go to user_management.
+        Attempts to write user_auth models go to user_management.
         """
         if model._meta.app_label in self.route_app_labels:
             return 'user_management'
@@ -30,7 +30,7 @@ class UserManagementRouter:
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
         """
-        Make sure the authentication app only appears in the 'user_management'
+        Make sure the user_auth app only appears in the 'user_management'
         database.
         """
         if app_label in self.route_app_labels:
