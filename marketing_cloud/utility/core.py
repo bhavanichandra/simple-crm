@@ -1,27 +1,21 @@
+import os
 from typing import Callable, Union, NewType
 
-from django.conf import settings
 from pymongo import MongoClient
 from pymongo.client_session import ClientSession
 from pymongo.errors import ConnectionFailure, OperationFailure
 
 OptionalSession = NewType('OptionalSession', Union[Callable[[ClientSession], None], None])
 
-
-class MongoDBClient:
-    _instance: MongoClient = None
-
-    def __new__(cls):
-        if cls._instance is None:
-            return MongoClient(settings.CUSTOM_MONGODB_URL)
-        return cls._instance
+MONGO_CONNECTION_STR = str(os.getenv('MONGO_CONNECTION_STR'))
+MONGO_DATABASE = str(os.getenv('MONGO_DATABASE'))
 
 
 class MongoAdapter:
-    client = MongoDBClient()
+    client: MongoClient = MongoClient(MONGO_CONNECTION_STR)
     callable_fn: OptionalSession = None
 
-    def __init__(self, database_name=settings.CUSTOM_MONGODB_DATABASE) -> None:
+    def __init__(self, database_name=MONGO_DATABASE) -> None:
         self.database = self.client.get_database(database_name)
 
     def set_callable(self, callable_fn):
@@ -47,7 +41,7 @@ class DefaultMongoAdapter(MongoAdapter):
 
 class TransactionEnabledMongoAdapter(DefaultMongoAdapter):
 
-    def __init__(self, database_name=settings.CUSTOM_MONGODB_DATABASE) -> None:
+    def __init__(self, database_name=MONGO_DATABASE) -> None:
         super().__init__(database_name)
         self.session = self.client.start_session()
 
