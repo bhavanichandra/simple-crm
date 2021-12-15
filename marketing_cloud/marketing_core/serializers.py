@@ -3,10 +3,17 @@ from datetime import datetime
 from rest_framework import serializers
 
 from utility.db_util import DatabaseAdapter
+from .models import UserAudit
 from .mongo_models import Lead, Address, Account
 
 # This is required to make connection with mongodb
 mongo_adapter = DatabaseAdapter()
+
+
+class UserAuditSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserAudit
+        fields = '__all__'
 
 
 class LeadSerializer(serializers.Serializer):
@@ -31,7 +38,6 @@ class LeadSerializer(serializers.Serializer):
         return super().update(instance, validated_data)
 
     def create(self, validated_data):
-        print(validated_data)
         return Lead(**validated_data).save()
 
 
